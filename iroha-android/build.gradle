@@ -22,7 +22,7 @@ def IROHA_LIBRARY_VERSION = "1.4.1"
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 19
@@ -52,30 +52,27 @@ android {
     }
 }
 
-def SUPPORT_PACKAGE_VERSION = "25.3.1"
-def ESPRESSO_PACKAGE_VERSION = "2.2.2"
-def JUNIT_PACKAGE_VERSION = "4.12"
-def MOCKITO_PACKAGE_VERSION = "1.10.19"
-def POWERMOCK_PACKAGE_VERSION = "1.6.6"
-def OKHTTP_PACKAGE_VERSION = "3.5.0";
-def GSON_PACKAGE_VERSION = "2.4";
-def BOUNCY_CASTLE_PACKAGE_VERSION = "1.55";
+ext {
+    supportLibVersion = '25.3.1'
+    bouncyCastleVersion = '1.55'
+    espressoVersion = '2.2.2'
+    junitVersion = '4.12'
+    mockitoVersion = '1.10.19'
+    powerMockVersion = '1.6.6'
+}
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$ESPRESSO_PACKAGE_VERSION", {
+    compile "com.android.support:support-annotations:$supportLibVersion"
+    compile "org.bouncycastle:bcprov-jdk15on:$bouncyCastleVersion"
+
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile "junit:junit:$JUNIT_PACKAGE_VERSION"
-    testCompile "org.mockito:mockito-core:$MOCKITO_PACKAGE_VERSION"
-    testCompile "org.powermock:powermock-module-junit4:$POWERMOCK_PACKAGE_VERSION"
-    testCompile "org.powermock:powermock-api-mockito:$POWERMOCK_PACKAGE_VERSION"
 
-    compile "com.android.support:appcompat-v7:$SUPPORT_PACKAGE_VERSION"
-    compile "com.squareup.okhttp3:okhttp:$OKHTTP_PACKAGE_VERSION"
-    compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_PACKAGE_VERSION"
-    compile "com.google.code.gson:gson:$GSON_PACKAGE_VERSION"
-    compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: "$BOUNCY_CASTLE_PACKAGE_VERSION"
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testCompile "org.powermock:powermock-module-junit4:$powerMockVersion"
+    testCompile "org.powermock:powermock-api-mockito:$powerMockVersion"
 }
 
 publish {
