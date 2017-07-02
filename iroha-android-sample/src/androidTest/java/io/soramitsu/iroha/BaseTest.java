@@ -28,7 +28,9 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.intent.Checks.checkNotNull;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 public class BaseTest {
@@ -64,6 +66,23 @@ public class BaseTest {
             @Override
             public void perform(UiController uiController, final View view) {
                 uiController.loopMainThreadForAtLeast(millis);
+            }
+        };
+    }
+
+    public static Matcher<View> withHint(final String hint) {
+        final Matcher<String> stringMatcher = is(hint);
+        checkNotNull(stringMatcher);
+        return new BoundedMatcher<View, EditText>(EditText.class) {
+            @Override
+            protected boolean matchesSafely(EditText item) {
+                return stringMatcher.matches(item.getHint().toString());
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with hint: ");
+                stringMatcher.describeTo(description);
             }
         };
     }

@@ -28,6 +28,7 @@ import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
 import io.soramitsu.iroha.R;
+import io.soramitsu.iroha.databinding.ActivityAccountRegisterBinding;
 import io.soramitsu.iroha.model.Account;
 import io.soramitsu.iroha.navigator.Navigator;
 import io.soramitsu.iroha.view.fragment.AccountRegisterFragment;
@@ -42,7 +43,7 @@ public class AccountRegisterActivity extends AppCompatActivity
 
     private Navigator navigator = Navigator.getInstance();
 
-    private io.soramitsu.iroha.databinding.ActivityAccountRegisterBinding binding;
+    private ActivityAccountRegisterBinding binding;
     private InputMethodManager inputMethodManager;
 
     public static Intent getCallingIntent(Context context) {
