@@ -33,10 +33,12 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.isFocusable;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static io.soramitsu.iroha.matcher.WithDrawable.withDrawable;
 
 @LargeTest
 public class RegisterTest extends BaseTest {
@@ -100,5 +102,12 @@ public class RegisterTest extends BaseTest {
         onView(withId(R.id.user_name))
                 .check(matches(isCompletelyDisplayed()))
                 .check(matches(withText(USER_NAME_LENGTH_JUST_10)));
+    }
+
+    @Test
+    public void logo_exist() throws Exception {
+        onView(withId(R.id.logo))
+                .check(matches(withDrawable(R.drawable.reg_logo)))
+                .check(matches(isDisplayed()));
     }
 }
